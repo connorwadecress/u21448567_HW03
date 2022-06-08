@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Video Files</h2>
+<p>All Media from the Media/Videos folder is displayed here</p>
+
+<div class="row" style="overflow: auto; background-color: gainsboro">
+    @foreach (var item in Model)
+    {
+    <div class="col-md-3 col-sm-6 col-lg-4  gallery" >
+        <a class="fancybox"  href="~/Media/Videos/@item.FileName" data-fancybox="gallery" data-type="video" data-caption="@item.FileName"> <!--Displaying video-->
+            <video controls width="350" height="300">
+                <source src="~/Media/Videos/@item.FileName" type="video/mp4">
+            </video>
+        </a>
+
+        <p> @item.FileName</p>
+
+        <button class="btn btn-success" style="color:white"> <!--Displaying buttons-->
+            @Html.ActionLink("Download", "DownloadFile",
+             new { fileName = item.FileName },
+             new { @Style = "color:white;" })
+        </button>
+
+        <button class="btn btn-danger" style="color:white">
+            @Html.ActionLink("Delete", "DeleteFile",
+             new { fileName = item.FileName },
+             new { @Style = "color:white;" })
+        </button>
+
+        <br />
+
+    </div>
+    }
+</div>
+
+<script> //fancybox script
+$(document).ready(function ($) {
+$(".gallery a").fancybox();
+});
+</script>
+

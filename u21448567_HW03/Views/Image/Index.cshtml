@@ -1,0 +1,110 @@
+﻿@*
+    REMEMBER the using of Models
+*@
+
+@using u21448567_HW03.Models;
+@model List<FileModel>
+
+
+
+@*
+
+    @model IEnumerable<FileUploadDownload.Models.FileModel>
+    Generated List details
+*@
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Images of any file type</h2>
+<p>All Media from the Media/Images folder is displayed here</p>
+
+
+
+<!-- Gallery -->
+<!--<div class="row">
+    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+             class="w-100 shadow-1-strong rounded mb-4"
+             alt="Boat on Calm Water" />
+
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
+             class="w-100 shadow-1-strong rounded mb-4"
+             alt="Wintry Mountain Landscape" />
+    </div>
+
+    <div class="col-lg-4 mb-4 mb-lg-0">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+             class="w-100 shadow-1-strong rounded mb-4"
+             alt="Mountains in the Clouds" />
+
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+             class="w-100 shadow-1-strong rounded mb-4"
+             alt="Boat on Calm Water" />
+    </div>
+
+    <div class="col-lg-4 mb-4 mb-lg-0">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
+             class="w-100 shadow-1-strong rounded mb-4"
+             alt="Waves at Sea" />
+
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
+             class="w-100 shadow-1-strong rounded mb-4"
+             alt="Yosemite National Park" />
+    </div>
+</div>-->
+<!-- Gallery -->
+@*<div class="lightbox">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/1.webp"
+                     data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Slides/1.webp"
+                     alt="Table Full of Spices"
+                     class="w-100 mb-2 mb-md-4 shadow-1-strong rounded" />
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Square/1.webp"
+                     data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Square/1.webp"
+                     alt="Coconut with Strawberries"
+                     class="w-100 shadow-1-strong rounded" />
+            </div>
+            <div class="col-lg-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Vertical/1.webp"
+                     data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Vertical/1.webp"
+                     alt="Dark Roast Iced Coffee"
+                     class="w-100 shadow-1-strong rounded" />
+            </div>
+        </div>
+    </div>*@
+
+<div class="row" style="overflow: auto; background-color: gainsboro">
+    <div class="column">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6 col-lg-4 gallery" style="padding: 10px">
+                <a class="fancybox" href="~/Media/Images/@item.FileName" data-fancybox="gallery" data-caption="@item.FileName">
+                    <img src="~/Media/Images/@item.FileName" style="width:300px; height:250px;" />
+                </a>
+
+                <p>@item.FileName</p>
+
+
+                <button class="btn btn-success" style="color:white">
+                    @Html.ActionLink("Download", "DownloadFile",
+                     new { fileName = item.FileName },
+                     new { @Style = "color:white;" })
+                </button>
+
+                <button class="btn btn-danger" style="color:white">
+                    @Html.ActionLink("Delete", "DeleteFile",
+                     new { fileName = item.FileName },
+                     new { @Style = "color:white;" })
+                </button>
+
+                <br />
+
+            </div>
+        }
+    </div>
+</div>
+
+
+

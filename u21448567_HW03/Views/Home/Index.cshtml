@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Media</h2>
+<p>Welcome to the Home Page.</p>
+<p>Here you will be able to see a description of what the application does. You are also presented with the choice of what file type you would like to upload, and a ChooseFile button to browse through files on your PC.</p>
+
+<div class="container">
+    <div class="row" style="background-color:lightgray">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Description</h3>
+                    <p>
+                        This application, built by Connor, is a functioning Media Upload and Download Application. Using a Combination of Model, View and Controller programming, as well as HTML, CSS, Javascript and a little sprinkle of Bootstrap (actually quite a lot of it), i was able to produce this beautiful application.
+                        The function of this application, is to be able to choose the rudimentary type of file, through the use of radio buttons, and then to browse through the files that you have on your PC and then to choose a file, and then to upload it (this then gets stored through the Model). Depending on the type of file you choose through the radio buttons, it will be uploaded to that specific sub-folder of the Media Folder.
+                        The Following 3 views then display the media uploaded to each file (File View display Files, Image View display Images and Video View display videos).
+                        On all 3 of these views, you are able to view the uploaded media, download the media or delete the media from the saved model. All the media on the views are responsive to the webpage size, as well as being scrollable.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Option Selection</h3>
+                    <br />
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+                    // an encoding type that allows files to be sent through a POST.
+                    // Quite simply, without this encoding the files cannot be sent through POST.
+                    {
+                        <input type="radio" id="rbDocument" name="chooseFileType" value="document">
+                        <label for="document">Document</label><br>
+
+                        <input type="radio" id="rbImage" name="chooseFileType" value="image">
+                        <label for="image">Image</label><br>
+
+                        <input type="radio" id="rbVideo" name="chooseFileType" value="video">
+                        <label for="video">Video</label><br>
+
+                        <br />
+
+                        <div><input class="btn btn-info" type="file" name="files" /></div>
+                        <br />
+                        <div><input class="btn btn-primary" type="submit" value="Upload" /></div>
+                        <br />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
